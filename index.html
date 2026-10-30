@@ -45,7 +45,7 @@ input.f:focus,select.f:focus,textarea:focus{outline:2px solid var(--accent);outl
 .cell input{width:100%;height:100%;border:0;background:transparent;text-align:center;font:600 calc(var(--cs)*.5)/1 var(--mono);color:var(--ink);text-transform:uppercase;padding:3px 0 0;caret-color:transparent;border-radius:0}
 .cell input:focus{outline:2px solid var(--accent);outline-offset:-2px;background:var(--accent-soft)}
 .cell.word{background:var(--hl)}
-.cell.bad input{color:var(--bad)} .cell.good input{color:var(--ok)} .cell.shown input{color:var(--accent)}
+.cell.bad input{color:var(--bad)} .cell.good input{color:var(--ok)} 
 .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 button{font-family:var(--display);font-weight:500;font-size:14px;padding:9px 14px;border-radius:6px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}
 button.primary{background:var(--accent);border-color:var(--accent);color:var(--paper)}
@@ -94,20 +94,18 @@ footer{margin-top:30px;color:var(--muted);font-size:12.5px;border-top:1px solid 
       <label for="documento">Documento de identidad<input class="f" id="documento" inputmode="numeric" placeholder="Número"></label>
       <label for="programa">Programa<input class="f" id="programa" placeholder="Ej.: Tecnología en Gestión Empresarial"></label>
       <label for="sede">Sede<select class="f" id="sede"><option value="">Seleccione</option><option>Roldanillo</option><option>La Unión</option><option>Toro</option><option>Otra</option></select></label>
-      <label for="pareja">Compañero(a) de pareja (paso 3)<input class="f" id="pareja" placeholder="Opcional"></label>
     </div>
   </section>
 
   <!-- PASO 2 -->
   <section class="sec">
     <h2><span class="step">2</span>Crucigrama</h2>
-    <p class="lead">Escriba sin tildes (INFLACION, PRODUCCION). Haga clic dos veces en una casilla o pulse la barra espaciadora para cambiar entre horizontal y vertical. Cada palabra revelada queda registrada en el PDF y descuenta en la nota.</p>
+    <p class="lead">Escriba sin tildes (INFLACION, PRODUCCION). Haga clic dos veces en una casilla o pulse la barra espaciadora para cambiar entre horizontal y vertical. Use <em>Verificar</em> para revisar su avance; el número de verificaciones queda registrado en el PDF.</p>
     <div class="layout">
       <div>
         <div class="boardbox"><div class="board" id="board" role="grid" aria-label="Crucigrama de 19 por 19"></div></div>
         <div class="toolbar">
           <button class="primary" id="b-check">Verificar</button>
-          <button id="b-word">Revelar palabra</button>
           <button id="b-reset">Borrar crucigrama</button>
         </div>
         <div class="status" id="status"></div>
@@ -124,52 +122,11 @@ footer{margin-top:30px;color:var(--muted);font-size:12.5px;border-top:1px solid 
 
   <!-- PASO 3 -->
   <section class="sec">
-    <h2><span class="step">3</span>Preguntas de análisis</h2>
-    <p class="lead">Use al menos dos conceptos del crucigrama en cada respuesta y explique la cadena completa: causa, variable afectada y efecto.</p>
-    <ol class="qs">
-      <li>
-        <div class="qt"><span class="tag">1 · Análisis</span>Una helada daña parte de la cosecha de uva en La Unión. Explique qué pasa con la <em>oferta</em>, el <em>precio</em> y la cantidad de <em>equilibrio</em>. Dibuje el desplazamiento de la curva.</div>
-        <div class="drawrow">
-          <div class="canvasbox">
-            <canvas id="cv" width="320" height="240" aria-label="Recuadro para dibujar la gráfica de oferta y demanda"></canvas>
-            <div class="toolbar" style="margin:0">
-              <button id="cv-color" type="button">Lápiz: negro</button>
-              <button id="cv-undo" type="button">Deshacer trazo</button>
-              <button id="cv-clear" type="button">Borrar dibujo</button>
-            </div>
-            <span class="small">Dibuje con el mouse o con el dedo. Use el lápiz rojo para la curva nueva.</span>
-          </div>
-          <textarea id="q1" placeholder="Escriba su explicación"></textarea>
-        </div>
-      </li>
-      <li>
-        <div class="qt"><span class="tag">2 · Comparación</span>¿Por qué la empresa de acueducto de un municipio se considera un <em>monopolio</em> y la telefonía móvil un <em>oligopolio</em>? ¿Qué consecuencia tiene cada estructura para el usuario?</div>
-        <textarea id="q2"></textarea>
-      </li>
-      <li>
-        <div class="qt"><span class="tag">3 · Aplicación</span>Usted decidió estudiar en INTEP en lugar de trabajar como jornalero. Calcule un <em>costo de oportunidad</em> aproximado por semestre con el jornal de su municipio. Muestre la operación.</div>
-        <textarea id="q3"></textarea>
-      </li>
-      <li>
-        <div class="qt"><span class="tag">4 · Argumentación</span>La quema de caña genera una <em>externalidad</em>. ¿Quién asume el costo? Proponga una medida pública para corregirla y diga qué efecto tendría sobre el <em>costo</em> de producción de los ingenios.</div>
-        <textarea id="q4"></textarea>
-      </li>
-      <li>
-        <div class="qt"><span class="tag">5 · Relación macro</span>Si la <em>inflación</em> sube y los salarios no, ¿qué ocurre con el <em>ingreso</em> real de los hogares? ¿Cómo afectaría la <em>demanda</em> de bienes con alta <em>elasticidad</em>?</div>
-        <textarea id="q5"></textarea>
-      </li>
-    </ol>
-  </section>
-
-  <!-- PASO 4 -->
-  <section class="sec">
-    <h2><span class="step">4</span>Generar PDF para entregar</h2>
+    <h2><span class="step">3</span>Generar PDF para entregar</h2>
     <p class="lead">El botón se activa cuando todo esté listo. Descargue el PDF y súbalo a la plataforma o envíelo como indique el docente.</p>
     <ul class="check" id="checklist">
       <li id="ck-datos">Nombre, documento, programa y sede diligenciados</li>
       <li id="ck-cruci">Todas las casillas del crucigrama llenas</li>
-      <li id="ck-preg">Las 5 preguntas respondidas (mínimo 40 caracteres cada una)</li>
-      <li id="ck-dib">Gráfica de la pregunta 1 dibujada</li>
     </ul>
     <button class="primary" id="b-pdf" disabled>Generar PDF</button>
     <div class="msg" id="msg"></div>
@@ -180,7 +137,7 @@ footer{margin-top:30px;color:var(--muted);font-size:12.5px;border-top:1px solid 
 
 <script>
 (function(){
-const W=19,H=19,KEY="crucigrama-economia-v1";
+const W=19,H=19,KEY="crucigrama-economia-v2";
 // Respuestas codificadas (no legibles a simple vista en el código fuente)
 const ENC="T1RVVElUU1VTfE5PSUNBTEZOSXxPU0VSR05JfE9EQUNSRU18T0VMUE1FU0VEfERBRElMSVRVfERBRElOVVRST1BPfE5PSUNDVURPUlB8REFESUNJVFNBTEV8QVRSRUZPfE9JUkJJTElVUUV8QklQfERBRElMQU5SRVRYRXxPSUxPUE9HSUxPfE9UU09DfFpFU0FDU0V8T0lMT1BPTk9NfEFETkFNRUQ=";
 const ANS=atob(ENC).split("|").map(s=>s.split("").reverse().join(""));
@@ -209,7 +166,7 @@ const sol=Array.from({length:H},()=>Array(W).fill(null)),num={};
 WORDS.forEach(o=>{o.cells=[];for(let k=0;k<o.w.length;k++){const r=o.d==="H"?o.r:o.r+k,c=o.d==="H"?o.c+k:o.c;sol[r][c]=o.w[k];o.cells.push([r,c]);}num[o.r+","+o.c]=o.n;});
 
 // ---------- estado ----------
-let state={grid:{},revealed:[],checks:0,start:null,fields:{},strokes:[]};
+let state={grid:{},checks:0,start:null,fields:{}};
 try{const s=JSON.parse(localStorage.getItem(KEY));if(s)state=Object.assign(state,s);}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
 const $=id=>document.getElementById(id);
@@ -225,7 +182,6 @@ for(let r=0;r<H;r++)for(let c=0;c<W;c++){
     i.value=state.grid[r+","+c]||"";d.appendChild(i);inputs[r+","+c]=i;}
   board.appendChild(d);
 }
-state.revealed.forEach(id=>{const o=WORDS.find(w=>w.d+w.n===id);if(o)o.cells.forEach(([r,c])=>$("cell-"+r+"-"+c).classList.add("shown"));});
 let dir="H",cur=null;
 const wordsAt=(r,c)=>WORDS.filter(o=>o.cells.some(([a,b])=>a===r&&b===c));
 function active(){if(!cur)return null;const ws=wordsAt(cur[0],cur[1]);return ws.find(o=>o.d===dir)||ws[0];}
@@ -263,54 +219,31 @@ const allFilled=()=>Object.values(inputs).every(i=>i.value);
 function startTimer(){if(!state.start){state.start=Date.now();save();}}
 function update(){
   const filled=Object.values(inputs).filter(i=>i.value).length,total=Object.keys(inputs).length;
-  $("status").textContent=filled+" de "+total+" casillas llenas · verificaciones: "+state.checks+" · palabras reveladas: "+state.revealed.length;
+  $("status").textContent=filled+" de "+total+" casillas llenas · verificaciones: "+state.checks+"";
   readiness();
 }
 $("b-check").onclick=()=>{state.checks++;let ok=0;
   Object.entries(inputs).forEach(([k,i])=>{const[r,c]=k.split(",").map(Number);if(!i.value)return;i.parentElement.classList.toggle("good",i.value===sol[r][c]);i.parentElement.classList.toggle("bad",i.value!==sol[r][c]);});
   WORDS.forEach(o=>{const d=isDone(o);$("li-"+o.d+o.n).classList.toggle("done",d);if(d)ok++;});
   save();update();$("status").textContent+=" · correctas: "+ok+" de 18";};
-$("b-word").onclick=()=>{const o=active();if(!o){$("current").textContent="Seleccione primero una casilla de la palabra que quiere revelar.";return;}
-  if(!state.revealed.includes(o.d+o.n))state.revealed.push(o.d+o.n);
-  o.cells.forEach(([r,c])=>{setCell(inputs[r+","+c],sol[r][c]);$("cell-"+r+"-"+c).classList.add("shown");});save();update();};
 let resetArmed=false;
 $("b-reset").onclick=e=>{
   if(!resetArmed){resetArmed=true;e.target.textContent="Confirmar: borrar todo";setTimeout(()=>{resetArmed=false;e.target.textContent="Borrar crucigrama";},4000);return;}
   resetArmed=false;e.target.textContent="Borrar crucigrama";
-  Object.values(inputs).forEach(i=>{setCell(i,"");i.parentElement.classList.remove("shown");});
+  Object.values(inputs).forEach(i=>setCell(i,""));
   document.querySelectorAll(".clues li.done").forEach(x=>x.classList.remove("done"));save();update();};
 
 // ---------- campos ----------
-const FIELDS=["nombre","documento","programa","sede","pareja","q1","q2","q3","q4","q5"];
+const FIELDS=["nombre","documento","programa","sede"];
 FIELDS.forEach(id=>{const el=$(id);el.value=state.fields[id]||"";el.addEventListener("input",()=>{state.fields[id]=el.value;save();readiness();});el.addEventListener("change",()=>{state.fields[id]=el.value;save();readiness();});});
-
-// ---------- dibujo ----------
-const cv=$("cv"),ctx=cv.getContext("2d");let pen="#1d2420",drawing=null;
-function axes(){ctx.fillStyle="#fff";ctx.fillRect(0,0,cv.width,cv.height);ctx.strokeStyle="#5c6862";ctx.lineWidth=1.5;
-  ctx.beginPath();ctx.moveTo(30,12);ctx.lineTo(30,212);ctx.lineTo(310,212);ctx.stroke();
-  ctx.fillStyle="#5c6862";ctx.font="bold 13px sans-serif";ctx.fillText("P",10,22);ctx.fillText("Q",296,230);}
-function redraw(){axes();state.strokes.forEach(s=>{ctx.strokeStyle=s.c;ctx.lineWidth=2.4;ctx.lineCap="round";ctx.lineJoin="round";ctx.beginPath();
-  s.p.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));if(s.p.length===1)ctx.lineTo(s.p[0][0]+.1,s.p[0][1]);ctx.stroke();});}
-function pos(e){const b=cv.getBoundingClientRect();return[Math.round((e.clientX-b.left)*cv.width/b.width),Math.round((e.clientY-b.top)*cv.height/b.height)];}
-cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);drawing={c:pen,p:[pos(e)]};state.strokes.push(drawing);redraw();});
-cv.addEventListener("pointermove",e=>{if(!drawing)return;drawing.p.push(pos(e));redraw();});
-const endDraw=()=>{if(drawing){drawing=null;save();readiness();}};
-cv.addEventListener("pointerup",endDraw);cv.addEventListener("pointercancel",endDraw);
-$("cv-color").onclick=e=>{pen=pen==="#1d2420"?"#c0392b":"#1d2420";e.target.textContent="Lápiz: "+(pen==="#1d2420"?"negro":"rojo");};
-$("cv-undo").onclick=()=>{state.strokes.pop();redraw();save();readiness();};
-$("cv-clear").onclick=()=>{state.strokes=[];redraw();save();readiness();};
-redraw();
 
 // ---------- verificación de entrega ----------
 function readiness(){
   const f=state.fields;
   const datos=["nombre","documento","programa","sede"].every(k=>(f[k]||"").trim());
   const cruci=allFilled();
-  const preg=["q1","q2","q3","q4","q5"].every(k=>(f[k]||"").trim().length>=40);
-  const dib=state.strokes.length>0;
   $("ck-datos").classList.toggle("ok",datos);$("ck-cruci").classList.toggle("ok",cruci);
-  $("ck-preg").classList.toggle("ok",preg);$("ck-dib").classList.toggle("ok",dib);
-  $("b-pdf").disabled=!(datos&&cruci&&preg&&dib);
+  $("b-pdf").disabled=!(datos&&cruci);
 }
 
 // ---------- PDF ----------
@@ -332,52 +265,38 @@ $("b-pdf").onclick=()=>{
 
   head("Crucigrama de conceptos económicos");
   // datos
-  doc.setFillColor(...HLc);doc.rect(M,y-4,CW,62,"F");
+  doc.setFillColor(...HLc);doc.rect(M,y-4,CW,56,"F");
   doc.setFontSize(9);const kv=(k,v,x,yy)=>{doc.setFont("helvetica","bold");doc.setTextColor(...MUT);doc.text(k,x,yy);doc.setFont("helvetica","normal");doc.setTextColor(...INK);doc.text(doc.splitTextToSize(v||"-",160)[0],x+68,yy);};
   kv("Estudiante:",f.nombre,M+10,y+12);kv("Documento:",f.documento,M+290,y+12);
   kv("Programa:",f.programa,M+10,y+28);kv("Sede:",f.sede,M+290,y+28);
-  kv("Pareja:",f.pareja,M+10,y+44);kv("Generado:",fecha,M+290,y+44);
-  y+=74;
+  kv("Generado:",fecha,M+10,y+44);
+  y+=68;
   // resultado
   doc.setFont("helvetica","bold");doc.setFontSize(12);doc.setTextColor(...ACC);doc.text("Resultado del crucigrama",M,y);y+=18;
   const box=(lab,val,x)=>{doc.setDrawColor(201,210,204);doc.setLineWidth(.8);doc.rect(x,y-12,120,38);doc.setFont("helvetica","bold");doc.setFontSize(16);doc.setTextColor(...INK);doc.text(val,x+10,y+8);
     doc.setFont("helvetica","normal");doc.setFontSize(7.5);doc.setTextColor(...MUT);doc.text(lab,x+10,y+20);};
-  box("palabras correctas",correct+" / 18",M);box("palabras reveladas",String(state.revealed.length),M+133);box("verificaciones",String(state.checks),M+266);box("tiempo aprox.",mins?mins+" min":"-",M+399);
+  box("palabras correctas",correct+" / 18",M);box("verificaciones",String(state.checks),M+133);box("tiempo aprox.",mins?mins+" min":"-",M+266);
   y+=42;
   // cuadrícula
-  const cs=18,gx=M+(CW-W*cs)/2;let gy=y;
+  const cs=16,gx=M+(CW-W*cs)/2;let gy=y;
   for(let r=0;r<H;r++)for(let c=0;c<W;c++){if(!sol[r][c])continue;const x=gx+c*cs,yy=gy+r*cs,v=inputs[r+","+c].value;
-    const shown=$("cell-"+r+"-"+c).classList.contains("shown");
     doc.setDrawColor(...INK);doc.setLineWidth(.6);doc.rect(x,yy,cs,cs);
     if(num[r+","+c]){doc.setFont("helvetica","bold");doc.setFontSize(5);doc.setTextColor(...MUT);doc.text(String(num[r+","+c]),x+1.2,yy+5);}
-    if(v){doc.setFont("helvetica","bold");doc.setFontSize(9.5);doc.setTextColor(...(shown?ACC:(v===sol[r][c]?OK:BAD)));doc.text(v,x+cs/2,yy+13,{align:"center"});}}
+    if(v){doc.setFont("helvetica","bold");doc.setFontSize(9);doc.setTextColor(...(v===sol[r][c]?OK:BAD));doc.text(v,x+cs/2,yy+11.5,{align:"center"});}}
   y=gy+H*cs+12;
   doc.setFont("helvetica","normal");doc.setFontSize(7.5);doc.setTextColor(...MUT);
-  doc.text("Convenciones: verde = letra correcta, rojo = letra incorrecta, morado = palabra revelada (ayuda).",M,y);y+=16;
+  doc.text("Convenciones: verde = letra correcta, rojo = letra incorrecta.",M,y);y+=16;
   // detalle por palabra
   doc.setFont("helvetica","bold");doc.setFontSize(12);doc.setTextColor(...ACC);doc.text("Detalle por palabra",M,y);y+=14;
   const list=[...WORDS].sort((a,b)=>(a.d+String(a.n).padStart(2,"0")).localeCompare(b.d+String(b.n).padStart(2,"0")));
   const half=Math.ceil(list.length/2);const y0=y;
   list.forEach((o,i)=>{const col=i<half?0:1,yy=y0+(i%half)*12.5,x=M+col*CW/2;
-    const ans=o.cells.map(([r,c])=>inputs[r+","+c].value||"_").join("");const rev=state.revealed.includes(o.d+o.n);const ok=isDone(o);
+    const ans=o.cells.map(([r,c])=>inputs[r+","+c].value||"_").join("");const ok=isDone(o);
     doc.setFont("helvetica","bold");doc.setFontSize(8.3);doc.setTextColor(...INK);doc.text(o.n+(o.d==="H"?" H":" V"),x,yy);
     doc.setFont("courier","bold");doc.text(ans,x+30,yy);
-    doc.setFont("helvetica","bold");doc.setTextColor(...(rev?ACC:(ok?OK:BAD)));doc.text(rev?"Revelada":(ok?"Correcta":"Incorrecta"),x+140,yy);});
+    doc.setFont("helvetica","bold");doc.setTextColor(...(ok?OK:BAD));doc.text(ok?"Correcta":"Incorrecta",x+140,yy);});
   y=y0+half*12.5+6;
-  foot();
-  // análisis
-  doc.addPage();head("Preguntas de análisis");
-  const Q=[["1. Análisis","Una helada daña parte de la cosecha de uva en La Unión. ¿Qué pasa con la oferta, el precio y la cantidad de equilibrio? Dibuje el desplazamiento de la curva."],
-   ["2. Comparación","¿Por qué el acueducto municipal es un monopolio y la telefonía móvil un oligopolio? ¿Qué consecuencia tiene cada estructura para el usuario?"],
-   ["3. Aplicación","Costo de oportunidad aproximado por semestre de estudiar en INTEP en lugar de trabajar como jornalero, con la operación."],
-   ["4. Argumentación","La quema de caña genera una externalidad. ¿Quién asume el costo? Medida pública para corregirla y efecto sobre el costo de producción de los ingenios."],
-   ["5. Relación macro","Si la inflación sube y los salarios no, ¿qué ocurre con el ingreso real? ¿Cómo afectaría la demanda de bienes con alta elasticidad?"]];
-  Q.forEach((q,i)=>{ensure(60);
-    doc.setFont("helvetica","bold");doc.setFontSize(10.5);doc.setTextColor(...ACC);doc.text(q[0],M,y);y+=14;
-    para(q[1],8.5,"italic",MUT);y+=4;
-    if(i===0){ensure(190);const img=cv.toDataURL("image/png");doc.addImage(img,"PNG",M,y,224,168);doc.setDrawColor(201,210,204);doc.rect(M,y,224,168);y+=178;}
-    para((f["q"+(i+1)]||"").trim(),9.5,"normal",INK);y+=12;});
-  ensure(70);y+=6;doc.setDrawColor(...MUT);doc.setLineWidth(.5);doc.line(M,y+30,M+220,y+30);doc.line(M+290,y+30,M+430,y+30);
+  y+=6;doc.setDrawColor(...MUT);doc.setLineWidth(.5);doc.line(M,y+30,M+220,y+30);doc.line(M+290,y+30,M+430,y+30);
   doc.setFont("helvetica","normal");doc.setFontSize(8);doc.setTextColor(...MUT);doc.text("Firma del estudiante",M,y+42);doc.text("Nota asignada por el docente",M+290,y+42);
   foot();
   const safe=(f.nombre||"estudiante").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]+/g,"_").replace(/^_|_$/g,"");
